@@ -1,303 +1,155 @@
-<!DOCTYPE html>
-<html lang="zh">
+!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="../lib/JQuery-1.11.1.js"></script>
-    <script src="../lib/jquery.easing.1.3.js"></script>
-    <style>
-        * {
-            padding: 0px;
-            margin: 0px;
-            font-family: "Comfortaa,'微软雅黑'";
-        }
-        
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            padding: 0px;
-            margin: 0px;
-        }
-        
-        #bg {
-            width: 100%;
-            height: 100%;
-            background-color: linen;
-        }
-        
-        .point {
-            /*display: inline-block;*/
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            /*margin: 2.5px;*/
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 2.5px rgba(255, 255, 255, 0.8) solid;
-            animation: pot 2s infinite;
-            /*transition: all 2s;*/
-        }
-        
-        @keyframes pot {
-            0%,
-            10% {
-                background-color: rgba(255, 255, 255, 0.9);
-            }
-            30% {
-                background-color: rgba(255, 255, 255, 0.5)
-            }
-            50% {
-                background-color: rgba(255, 255, 255, 0.3)
-            }
-            70% {
-                background-color: rgba(255, 255, 255, 0.5)
-            }
-            100% {
-                background-color: rgba(255, 255, 255, 0.9);
-            }
-        }
-        
-        #canvas_1 {
-            width: 360px;
-            height: 216px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            /*background-color: lightpink;*/
-            /*perspective: 500px;*/
-            transform-style: preserve-3d;
-            transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateY(71px)translateX(-0px);
-            z-index: 10;
-        }
-        /*放15个cube*/
-        
-        #canvas_2 {
-            width: 360px;
-            height: 144px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            /*background-color: lightpink;*/
-            /*perspective: 500px;*/
-            transform-style: preserve-3d;
-            transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateZ(72px) translateY(-108px);
-        }
-        /*放10个cube*/
-        
-        #canvas_3 {
-            width: 216px;
-            height: 144px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            /*background-color: lightpink;*/
-            z-index: 10;
-            /*perspective: 500px;*/
-            transform-style: preserve-3d;
-            transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg) translateX(120px) translateZ(-26px) translateY(-122px);
-        }
-        /*放16个cube*/
-        
-        .cube,
-        .cube:after,
-        .cube:before {
-            content: '';
-            width: 30px;
-            height: 30px;
-            position: absolute;
-            float: left;
-            padding: 20px;
-            transform-style: preserve-3d;
-            border: 1px solid #fc9;
-        }
-        
-        .cube {
-            position: relative;
-            background-color: lightblue;
-            transform: translateZ(70px);
-        }
-        
-        .cube:after {
-            /*display: none;*/
-            background-color: lightgrey;
-            transform: rotateX(90deg) translateX(-20px) translateZ(-15px) translateY(-35px);
-        }
-        
-        .cube:before {
-            /*display: none;*/
-            background-color: lightslategray;
-            transform: rotateY(90deg) translateY(-20px) translateZ(15px) translateX(35px);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+    border: 0;
+  }
+
+  html,
+  body {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    bottom: 0%;
+    right: 0%;
+    overflow: hidden;
+  }
+
+  .canvas {
+    width: 100%;
+    height: 100%;
+  }
+</style>
 
 <body>
-    <div id="bg">
-        <!--<div id="point"></div>-->
-        <div id="canvas_1">
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-        </div>
-        <div id="canvas_2">
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-        </div>
-        <div id="canvas_3">
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-            <div class="cube">
-                <a href=""></a>
-            </div>
-        </div>
-    </div>
+  <canvas id="canvas"></canvas>
 </body>
 <script>
-    function cvs_style() {
-        for (var i = 1; i <= 2; i++) {
-            var cvs_i = document.getElementById("canvas_" + i);
-            cvs_i.style.marginLeft = -(parseInt(cvs_i.clientWidth) / 2) + "px";
-            cvs_i.style.marginTop = -(parseInt(cvs_i.clientHeight) / 2) + "px";
-        }
-    }
-    var timer = null;
-    var timer_2 = null;
-    var a = [];
-    var cubeArr = document.getElementsByClassName("cube");
-    // 24 - cube ---- 10 - cube
+  function color16(){
+    var r = Math.floor(Math.random()*256);
+		var g = Math.floor(Math.random()*256);
+		var b = Math.floor(Math.random()*256);
+		var color = '#'+r.toString(16)+g.toString(16)+b.toString(16);
+		return color;
+  }
+  function ThreeD(id) {
+    this.cvs = document.getElementById(id);
+    this.ctx = this.cvs.getContext("2d");
+    this.clientWidth = this.cvs.width;
+    this.clientHeight = this.cvs.height;
+    this.counts = 200;
+    this.domArr = [];
+    this.init();
+  }
+  ThreeD.prototype = {
+    resize: function () {
+      let width = document.body.clientWidth;
+      let height = document.body.clientHeight;
+      this.cvs.width = width;
+      this.cvs.height = height;
+      this.clientWidth = this.cvs.width;
+      this.clientHeight = this.cvs.height;
+    },
+    clear: function () {
+      this.ctx.clearRect(0, 0, this.clientWidth, this.clientHeight);
+    },
+    intiDomArr: function () {
+      var centralX = this.clientWidth / 2,
+        centralY = this.clientHeight / 2;
+      var that = this;
+      for (var i = 0; i < this.counts; i++) {
+        var color = color16();
+        let circle = new Circle({
+          ctx: that.ctx,
+          visibility: 300,
+          posx: Math.random() * this.clientWidth - centralX,
+          posy:  Math.random() * this.clientHeight - centralY,
+          posz: Math.random() * 500,
+          size: 10,
+          speed: Math.random()*5,
+          centralx: centralX,
+          centraly: centralY,
+          r: 5,
+          color: color
+        });
 
-    for (var i = 0; i < cubeArr.length; i++) {
-        cubeArr[i].hax = false;
-        a[i] = cubeArr[i].getElementsByTagName("a")[0];
-        a[i].href = "javascript:void(0)";
-        a[i].index = i;
-        a[i].className = "point";
-        a[i].style.display = "none";
-    }
+        this.domArr.push(circle);
 
-    function cube_up() {
-        for (var i = 0; i < cubeArr.length; i++) {
-            // if (i > 15 && i < 31) {
-            if (cubeArr[i].getElementsByClassName("point")[0].style.display == "inline-block") {
-                cubeArr[i].style.cssText = "transform:translateZ(141px);transition:transform 1.5s";
-            }
-        }
+      }
+    },
+    render: function () {
+      this.clear();
+      this.domArr.forEach(function (el,index) {
+        el.draw();
+      })
+    },
+    animate: function () {
+      var that = this;
+      that.render();
+      window.requestAnimationFrame(function(){
+        that.animate();
+      })
+    },
+    init: function () {
+      var that = this;
+      this.resize();
+      window.addEventListener("resize", function () {
+        that.resize();
+      });
+      this.clear();
+      this.intiDomArr();
+      this.animate();
     }
-
-    function try_func(obj) {
-        if (obj.style.display == "inline-block") {
-            obj.parentNode.style.cssText = "transform:translateZ(71px);transition:transform 1s";
-        }
+  }
+  function Circle(args) {
+    this.ctx = args['ctx'];
+    this.visibility = args['visibility'];
+    this.posx = args['posx'];
+    this.posy = args['posy'];
+    this.posz = args['posz'];
+    this.centralx = args['centralx'];
+    this.centraly = args['centraly'];
+    this.size = args['size'];
+    this.r = args['r'];
+    this.x = this.posx;
+    this.y = this.posy;
+    this.z = this.posz;
+    this.speed = args['speed'];
+    this.color = args['color'];
+  }
+  Circle.prototype = {
+    projection: function () {
+      if (this.z > -this.visibility) {
+        var scale = this.visibility / (this.visibility + this.z);
+        this.x = this.centralx + this.posx * scale;
+        this.y = this.centraly + this.posy * scale;
+        this.size = this.r * scale;
+        this.z -= this.speed;
+      } else {
+        this.z = this.posz;
+      }
+    },
+    draw: function () {
+      this.projection();
+      this.ctx.save();
+      this.ctx.fillStyle = this.color;
+      this.ctx.translate(this.x, this.y);
+      this.ctx.beginPath();
+      this.ctx.arc(-this.r, -this.r, this.size, Math.PI * 2, false);
+      this.ctx.closePath();
+      this.ctx.fill();
+      this.ctx.restore();
     }
-
-    function change_id(obj) {
-        for (var i = 0; i < cubeArr.length; i++) {
-            a[i].style.display = "none";
-        }
-        obj.getElementsByClassName("point")[0].style.display = "inline-block";
-        cube_up();
-    }
-
-    window.onload = function() {
-        cvs_style();
-        for (var i = 0; i < cubeArr.length; i++) {
-            cubeArr[i].onmousedown = function(e) {
-
-                if (this.getElementsByClassName("point")[0].style.display == "inline-block") {
-                    // console.log("a");
-                    this.style.cssText = "transform:translateZ(71px);transition:transform 1s";
-                    this.getElementsByClassName("point")[0].style.display = "none";
-                } else {
-                    change_id(this);
-                }
-            }
-        }
-    }
+  }
+  var td = new ThreeD('canvas');
 </script>
 
 </html>
